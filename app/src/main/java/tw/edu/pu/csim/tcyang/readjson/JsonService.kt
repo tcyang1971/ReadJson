@@ -4,6 +4,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface JsonService {
-    @GET("tcyang_1.json")
+    @GET("tcyang_2.json")
     fun getJsonData(): Call<JsonResponse>
 }

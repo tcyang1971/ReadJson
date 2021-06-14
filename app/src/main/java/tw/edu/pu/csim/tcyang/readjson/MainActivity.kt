@@ -32,7 +32,13 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<JsonResponse>, response: Response<JsonResponse>) {
                 if (response.code() == 200) {
                     val Result = response.body()!!
-                    var msg = "校名：" + Result.school + "\n地址："+ Result.address
+                    //var msg = "校名：" + Result.school + "\n地址："+ Result.address
+
+                    var msg = ""
+                    for (element in Result.univ) {
+                        msg += "校名：" + element.school +
+                                "\n地址："+ element.address + "\n\n"
+                    }
                     txv.text = msg
                 }
                 else{
