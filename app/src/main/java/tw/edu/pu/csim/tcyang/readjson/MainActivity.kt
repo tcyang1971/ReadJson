@@ -28,14 +28,12 @@ class MainActivity : AppCompatActivity() {
         val service = retrofit.create(JsonService::class.java)
         val call = service.getJsonData()
 
-        call.enqueue(object : Callback<JsonResponse> {
-            override fun onResponse(call: Call<JsonResponse>, response: Response<JsonResponse>) {
+        call.enqueue(object : Callback<List<JsonResponse>> {
+            override fun onResponse(call: Call<List<JsonResponse>>, response: Response<List<JsonResponse>>) {
                 if (response.code() == 200) {
                     val Result = response.body()!!
-                    //var msg = "校名：" + Result.school + "\n地址："+ Result.address
-
                     var msg = ""
-                    for (element in Result.univ) {
+                    for (element in Result) {
                         msg += "校名：" + element.school +
                                 "\n地址："+ element.address + "\n\n"
                     }
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<JsonResponse>>, t: Throwable) {
                 txv.text = t.message
             }
         })
