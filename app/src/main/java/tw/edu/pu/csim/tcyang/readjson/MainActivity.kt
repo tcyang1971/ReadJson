@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                txv.text = t.message
             }
         })
     }
